@@ -36,5 +36,3 @@ function view(fn, options = {}) {
 }
 
 module.exports = { html, view };
-
-
