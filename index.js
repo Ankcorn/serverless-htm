@@ -5,7 +5,7 @@ const buildCacheHeader = require('./utils/caching');
 const html = htm.bind(vhtml);
 
 const defaults = {
-	Layout: ({body}) => html`<html><body>${body}</body></html>`,
+	Layout: ({ children}) => html`<html><body>${children}</children></html>`,
 }
 
 function view(fn, options = {}) {
@@ -20,7 +20,7 @@ function view(fn, options = {}) {
 					'cache-control': buildCacheHeader(options.caching),
 					'content-type': 'text/html; charset=utf-8'
 				},
-				body: `<!DOCTYPE html>${html`<${Layout} body=${result} />`}`
+				body: `<!DOCTYPE html>${html`<${Layout}>${result} <//>`}`
 			}
 		} catch(e) {
 			return {
@@ -36,3 +36,16 @@ function view(fn, options = {}) {
 }
 
 module.exports = { html, view };
+
+
+async function Bananas() {
+	await new Promise((resolve) => setTimeout(resolve, 100));
+	return html`<div>haha</div>`
+}
+
+(async() => {
+	console.log(html`<div>
+	<${await Bananas()}><//>
+</div>`)
+})()
+
