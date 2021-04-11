@@ -20,7 +20,7 @@ function view(fn, options = {}) {
 					'cache-control': buildCacheHeader(options.caching),
 					'content-type': 'text/html; charset=utf-8'
 				},
-				body: `<!DOCTYPE html>${html`<${Layout}>${result} <//>`}`
+				body: `<!DOCTYPE html>${html`<${Layout}>${result}<//>`}`
 			}
 		} catch(e) {
 			return {
@@ -36,16 +36,4 @@ function view(fn, options = {}) {
 }
 
 module.exports = { html, view };
-
-
-async function Bananas() {
-	await new Promise((resolve) => setTimeout(resolve, 100));
-	return html`<div>haha</div>`
-}
-
-(async() => {
-	console.log(html`<div>
-	<${await Bananas()}><//>
-</div>`)
-})()
 
