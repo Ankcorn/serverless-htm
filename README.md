@@ -38,7 +38,7 @@ exports.handler = view((event) => {
 });
 ```
 
-## Examples
+## Usage
 
 ## API
 

@@ -24,7 +24,7 @@ function view(fn, options = {}) {
 			}
 		} catch(e) {
 			return {
-				statusCode: 200,
+				statusCode: 500,
 				headers: {
 					'cache-control': buildCacheHeader(),
 					'content-type': 'text/html; charset=utf-8'
