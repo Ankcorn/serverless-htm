@@ -5,7 +5,17 @@ const buildCacheHeader = require('./utils/caching');
 const html = htm.bind(vhtml);
 
 const defaults = {
-	Layout: ({ children}) => html`<html><body>${children}</body></html>`,
+	Layout: ({ children, scripts = [], styles = [] }) => html`
+<html>
+	<head>
+		${styles.map(stylesheet => html`<link rel="stylesheet" href=${stylesheet} />`)}
+
+	</head>
+	<body>
+		${scripts.map(script => html`<script src=${script} async></script>`)}
+		${children}
+	</body>
+</html>`,
 }
 
 function view(fn, options = {}) {
@@ -20,7 +30,10 @@ function view(fn, options = {}) {
 					'cache-control': buildCacheHeader(options.caching),
 					'content-type': 'text/html; charset=utf-8'
 				},
-				body: `<!DOCTYPE html>${html`<${Layout}>${result}<//>`}`
+				body: `<!DOCTYPE html>${html`<${Layout} 
+	scripts=${options.scripts}  
+	styles=${options.styles}
+>${result}<//>`}`
 			}
 		} catch(e) {
 			return {
