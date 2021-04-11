@@ -5,7 +5,7 @@ const buildCacheHeader = require('./utils/caching');
 const html = htm.bind(vhtml);
 
 const defaults = {
-	Layout: ({ children}) => html`<html><body>${children}</children></html>`,
+	Layout: ({ children}) => html`<html><body>${children}</body></html>`,
 }
 
 function view(fn, options = {}) {
@@ -29,7 +29,7 @@ function view(fn, options = {}) {
 					'cache-control': buildCacheHeader(),
 					'content-type': 'text/html; charset=utf-8'
 				},
-				body: `<!DOCTYPE html>${html`<${Layout} body=${e.message} />`}`
+				body: `<!DOCTYPE html>${html`<${Layout}>${e.message}<//>`}`
 			}
 		}
 	}
