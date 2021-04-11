@@ -1,6 +1,6 @@
 {
   "name": "serverless-htm",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Return Hyperscript Tagged Markup Views From AWS Lambda Functions",
   "main": "index.js",
   "scripts": {
