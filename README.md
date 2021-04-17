@@ -27,7 +27,7 @@ Serverless HTM wraps the lambda function code and passes the return value into a
 const http = require('tiny-json-http');
 const { html, view } = require('serverless-htm');
 
-exports.handler = view((event) => {
+exports.handler = view(async(event) => {
   const { body } = await http.get('https://ghibliapi.herokuapp.com/films');
   return html`
     <h1>Studio Gibli Films</h1>
