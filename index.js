@@ -8,7 +8,7 @@ const defaults = {
 	Layout: ({ children, scripts = [], styles = []}) => html`
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		${styles.map(stylesheet => html`<link rel="stylesheet" href=${stylesheet} />`)}
 	</head>
 	<body>
